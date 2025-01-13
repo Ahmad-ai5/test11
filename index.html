@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondos company</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="logo">
+            <h1>Sondos company </h1>
+        </div>
+        <nav>
+            <ul>
+                <!-- زر اتصل بنا -->
+            
+                <li><a href="#">المنتجات</a></li>
+                <li><a href="#">العروض</a></li>
+                <li><a href="#">عن المتجر</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+            </ul>
+        </nav>
+
+        <!-- شريط السلة -->
+        <div class="cart">
+            <button onclick="toggleCart()">
+                سلة المشتريات (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <div class="cart-footer">
+        <button onclick="downloadOrdersAsCSV()">تنزيل الطلبات كملف CSV</button>
+        <button onclick="downloadOrdersAsJSON()">تنزيل الطلبات كملف JSON</button>
+    </div>
+    
+
+    <!-- نافذة منبثقة لعرض تفاصيل الاتصال -->
+    <div id="contact-popup" class="contact-popup" style="display: none;">
+        <div class="popup-content">
+            <h3>معلومات الاتصال</h3>
+            <p><strong>الهاتف:</strong> 6036 530 058</p>
+            <p><strong>البريد الإلكتروني:</strong> ahmad110011999@gmail.com</p>
+            <button onclick="closeContactPopup()">إغلاق</button>
+        </div>
+    </div>
+    <!-- شريط البحث -->
+    <div class="search-bar">
+        <input type="text" placeholder="ابحث عن المنتجات">
+        <button>بحث</button>
+    </div>
+
+    <!-- عرض المنتجات -->
+    <div class="product" data-id="سماعة هايبر اكس ">
+        <img src="/images/hybex.jpg" alt="Product 1">
+        <h3>سماعة هايبر اكس </h3>
+        <p>سماعة هايبر اكس  جميله و مريجه وصوت</p>
+        <p class="price">350 درهم</p>
+        <button onclick="addToCart(1, 'سماعة هايبر اكس ', 350, 'public/hybex.jpg')">أضف إلى السلة</button>
+    </div>
+    <div class="product" data-id="2">
+        <img src="images/arbkeystiker.png" alt="ستكر تحويل الكيبورد للعربي ">
+        <h3>ستكر تحويل الكيبورد للعربي</h3>
+        <p></p>
+        <p class="price">2.5 درهم</p>
+        <button onclick="addToCart(2, 'ستكر تحويل الكيبورد للعربي', 2.5, 'images/arbkeystiker.png')">أضف إلى السلة</button>
+    </div>
+    <div class="product" data-id="حقيبة">
+        <img src="images/baglaptop.png" alt="منتج 3">
+        <h3>حقيبة لابتوب</h3>
+        <p> حقيبة لابتوب</p>
+        <p class="price">40 درهم</p>
+        <button onclick="addToCart(3, ' حقيبة لابتوب', 40, 'images/baglaptop.png')">أضف إلى السلة</button>
+    </div>
+    <div class="product" data-id="سماعة هاتف سلكي">
+        <img src="images/earphone.png" alt="سماعة هاتف سلكي ">
+        <h3>سماعة هاتف سلكي</h3>
+        <p>سماعة هاتف سلكي</p>
+        <p class="price">19 درهم</p>
+        <button onclick="addToCart(4, 'سماعة هاتف سلكي', 19, 'images/earphone.png')">أضف إلى السلة</button>
+    </div>
+    
+    <div class="product" data-id="لوحة مقاتيح ضوئيه">
+        <img src="images/key.png" alt="لوحة مقاتيح ضوئيه">
+        <h3>لوحة مقاتيح ضوئيه</h3>
+        <p>لوحة مقاتيح ضوئيه</p>
+        <p class="price">700 درهم</p>
+        <button onclick="addToCart(5, 'لوحة مقاتيح ضوئيه', 700, 'images/key.png')">أضف إلى السلة</button>
+    </div>
+
+    <div class="product" data-id="ماسو باد  ">
+        <img src="images/gelymouspad.png" alt="ماسو باد  ">
+        <h3>ماسو باد  </h3>
+        <p> ماسو باد مريح  </p>
+        <p class="price">14 درهم</p>
+        <button onclick="addToCart(5, 'ماسو باد  ', 14, 'images/gelymouspad.png')">أضف إلى السلة</button>
+    </div>
+
+
+    <div class="product" data-id="سلك hdmi">
+        <img src="images/hdmi.png" alt="سلك hdmi">
+        <h3>hdmi</h3>
+        <p>سلك hdmi عالي الجودة</p>
+        <p class="price">5 درهم</p>
+        <button onclick="addToCart(6, 'سلك hdmi', 5, 'images/hdmi.png')">أضف إلى السلة</button>
+    </div>
+
+
+    <div class="product" data-id="لوحة مقاتيح ضوئيه">
+        <img src="images/keybord.png" alt="لوحة مقاتيح ضوئيه">
+        <h3>لوحة مقاتيح led </h3>
+        <p>لوحة مقاتيح ضوئيه</p>
+        <p class="price">650 درهم</p>
+        <button onclick="addToCart(7, 'لوحة مقاتيح ضوئيه', 650, 'images/keybord.png.')">أضف إلى السلة</button>
+    </div>
+
+
+    <div class="product" data-id="مايكروفون">
+        <img src="images/microphone.png" alt="مايكروفون">
+        <h3>مايكروفون </h3>
+        <p>مايكروفون صوت صافي </p>
+        <p class="price">150 درهم</p>
+        <button onclick="addToCart(8, 'مايكروفون', 150, 'images/microphone.png')">أضف إلى السلة</button>
+    </div>
+
+    <div class="product" data-id="ماوس  ضوئيه">
+        <img src="images/mousee.png" alt="ماوس  ضوئيه">
+        <h3>ماوس  ضوئيه</h3>
+        <p>ماوس  ضوئيه</p>
+        <p class="price">399 درهم</p>
+        <button onclick="addToCart(9, 'ماوس  ضوئيه', 399, 'images/mousee.png')">أضف إلى السلة</button>
+    </div>
+
+
+    <div class="product" data-id="حامل الهاتف">
+        <img src="images/standphoneclips.png" alt=" حامل الهاتف ">
+        <h3>منتج 2</h3>
+        <p>حامل الهاتف عديد الحرك</p>
+        <p class="price">15 درهم</p>
+        <button onclick="addToCart(5, 'حامل الهاتف', 15, 'images/standphoneclips.png')">أضف إلى السلة</button>
+    </div>
+
+
+    <div class="product" data-id="لوحة مقاتيح ضوئيه">
+        <img src="images/keyborde.png" alt="لوحة مقاتيح ضوئيه">
+        <h3>لوحة مقاتيح</h3>
+        <p>لوحة مقاتيح ضوئيه</p>
+        <p class="price">450 درهم</p>
+        <button onclick="addToCart(5, 'لوحة مقاتيح ضوئيه', 450, 'images/keyborde.png')">أضف إلى السلة</button>
+    </div>
+
+
+    <!-- سلة المشتريات (مخفية بشكل افتراضي) -->
+    <div id="cart" class="cart-popup">
+        <div class="cart-header">
+            <h3>سلة المشتريات</h3>
+            <button onclick="toggleCart()">إغلاق</button>
+        </div>
+        <ul id="cart-items">
+            <!-- ستظهر المنتجات هنا -->
+        </ul>
+        <div class="cart-footer">
+            <p>الإجمالي: <span id="total-price">0</span> درهم</p>
+            <button>إتمام الشراء</button>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>&copy; متجر السندس للبيع بالجمله.</p>
+        <p><a href="#">الشروط والأحكام</a> | <a href="#">سياسة الخصوصية</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- زر اتصل بنا في أسفل الصفحة -->
+<div class="contact-button">
+    <a href="javascript:void(0);" onclick="showContactInfo()">اتصل بنا</a>
+    <button id="contact-btn" onclick="showContactInfo()">اتصل بنا</button>
+</div>
+
+<!-- سلة المشتريات (مخفية بشكل افتراضي) -->
+<div id="cart" class="cart-popup">
+    <div class="cart-header">
+        <h3>سلة المشتريات</h3>
+        <button onclick="toggleCart()">إغلاق</button>
+    </div>
+    <ul id="cart-items">
+        <!-- ستظهر المنتجات هنا -->
+    </ul>
+    <div class="cart-footer">
+        <p>الإجمالي: <span id="total-price">0</span> درهم</p>
+        <button onclick="showPaymentOptions()">إتمام الشراء</button>
+    </div>
+</div>
+
+<!-- نموذج اختيار طريقة الدفع -->
+<div id="payment-options" class="payment-options" style="display: none;">
+    <h3>اختر طريقة الدفع</h3>
+    <button onclick="showCardForm()">دفع باستخدام فيزا</button>
+    <button onclick="payWithCash()">دفع كاش</button>
+</div>
+
+<!-- نموذج إدخال معلومات الفيزا -->
+<div id="card-form" class="card-form" style="display: none;">
+    <h3>أدخل بيانات الفيزا</h3>
+    <label for="card-number">رقم البطاقة:</label>
+    <input type="text" id="card-number" placeholder="رقم البطاقة" required>
+    
+    <label for="expiry-date">تاريخ انتهاء الصلاحية:</label>
+    <input type="text" id="expiry-date" placeholder="MM/YY" required>
+    
+    <label for="cvv">رمز الأمان (CVV):</label>
+    <input type="text" id="cvv" placeholder="CVV" required>
+    
+    <button onclick="submitCardDetails()">إتمام الدفع</button>
+    <button onclick="closeCardForm()">إغلاق</button>
+</div>
+
+</body>
+</html>
+
+
+
+
