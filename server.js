@@ -9,6 +9,14 @@ const PORT = 3000;
 // استخدام Body Parser لتحليل بيانات JSON
 app.use(bodyParser.json());
 
+// مسار GET للصفحة الرئيسية
+app.get('/', (req, res) => {
+    res.send('مرحبًا بك في خادم الطلبات!');
+});
+
+// استخدام ملفات ثابتة (مثل HTML)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // استقبال الطلبات وحفظها في ملف JSON
 app.post('/save-orders', (req, res) => {
     const orders = req.body.orders;
